@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Momentum — high-contrast sans sketch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FCFCFB; --surface:#FFFFFF; --ink:#15171A; --muted:#6B7075;
+    --line:#E6E7E9; --line-strong:#C9CCCF; --accent:#1F6F5C; --accent-soft:#E4F0EC;
+    --pos:#1F6F5C; --neg:#B23A33;
+  }
+  [data-theme="dark"]{
+    --bg:#0E0F11; --surface:#16181B; --ink:#F1F2F3; --muted:#8C9197;
+    --line:#23262A; --line-strong:#33373C; --accent:#5FB39B; --accent-soft:#13201C;
+    --pos:#5FB39B; --neg:#D47A72;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Space Grotesk',system-ui,sans-serif;background:var(--bg);color:var(--ink);
+    line-height:1.5;-webkit-font-smoothing:antialiased;font-size:15px}
+  .mono{font-family:'JetBrains Mono',monospace}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+
+  header{border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+  .bar{display:flex;align-items:center;justify-content:space-between;height:66px}
+  .mark{font-size:19px;font-weight:700;letter-spacing:-.02em}
+  .mark b{color:var(--accent)}
+  nav{display:flex;gap:2px}
+  .tab{font-size:13px;font-weight:500;color:var(--muted);padding:8px 15px;border:1px solid transparent;cursor:pointer;background:none;font-family:inherit}
+  .tab[aria-selected="true"]{color:var(--ink);border-color:var(--line-strong);border-radius:5px}
+  .toggle{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border:1px solid var(--line);padding:6px 11px;border-radius:5px;cursor:pointer;background:none}
+  @media(max-width:640px){nav{display:none}}
+
+  .mast{display:grid;grid-template-columns:320px 1fr;gap:54px;align-items:center;padding:60px 0 52px;border-bottom:1px solid var(--line)}
+  @media(max-width:760px){.mast{grid-template-columns:1fr;gap:36px}}
+  .gauge{position:relative;width:320px;height:200px}
+  .gauge svg{width:100%;height:100%}
+  .gtxt{position:absolute;left:0;right:0;bottom:6px;text-align:center}
+  .gnum{font-size:88px;font-weight:600;letter-spacing:-.04em;line-height:.85}
+  .glabel{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+  .gof{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);margin-top:5px}
+
+  .mast h1{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1.05;max-width:15ch}
+  .mast p.lead{color:var(--muted);margin:18px 0 26px;max-width:44ch;font-size:15px}
+  .split{display:flex;gap:40px;flex-wrap:wrap}
+  .stat{display:flex;flex-direction:column;gap:5px}
+  .stat .k{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+  .stat .v{font-size:28px;font-weight:600;letter-spacing:-.02em}
+  .stat .v.pos{color:var(--pos)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);margin:0 0 80px}
+  @media(max-width:860px){.grid2{grid-template-columns:1fr}}
+  .panel{background:var(--surface);padding:36px 34px}
+  .panel:first-child{border-right:1px solid var(--line)}
+  @media(max-width:860px){.panel:first-child{border-right:none;border-bottom:1px solid var(--line)}}
+  .phead{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:22px}
+  .phead h2{font-size:21px;font-weight:600;letter-spacing:-.02em}
+  .phead .tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+  .balance{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
+  .balance .b{font-size:46px;font-weight:600;letter-spacing:-.03em}
+  .rate{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--pos)}
+  .sub{font-size:12.5px;color:var(--muted);margin-bottom:22px}
+  .chart{border:1px solid var(--line);border-radius:5px;padding:14px 12px 6px;margin-bottom:26px}
+  .chart svg{width:100%;height:130px;display:block}
+
+  .cat{display:flex;flex-direction:column;gap:15px}
+  .crow{display:grid;grid-template-columns:92px 1fr 60px;align-items:center;gap:12px;font-size:13px}
+  .cbar{height:7px;background:var(--line);border-radius:4px;overflow:hidden}
+  .cbar i{display:block;height:100%;background:var(--accent)}
+  .cval{font-family:'JetBrains Mono',monospace;font-size:12px;text-align:right;color:var(--muted)}
+
+  .heat{display:grid;grid-template-columns:repeat(18,1fr);gap:4px;margin-bottom:26px}
+  .cell{aspect-ratio:1;border-radius:2px;background:var(--line)}
+  .cell.l1{background:var(--accent);opacity:.3}
+  .cell.l2{background:var(--accent);opacity:.52}
+  .cell.l3{background:var(--accent);opacity:.76}
+  .cell.l4{background:var(--accent);opacity:1}
+  .hlist{display:flex;flex-direction:column}
+  .hrow{display:flex;align-items:center;justify-content:space-between;padding:15px 0;border-top:1px solid var(--line)}
+  .hrow .name{font-size:14px;font-weight:500}
+  .hrow .meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+  .chk{width:36px;height:36px;border:1.5px solid var(--line-strong);border-radius:5px;background:none;cursor:pointer;color:var(--muted);font-size:15px;font-weight:600}
+  .chk.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .add{display:flex;gap:8px;margin-top:18px}
+  .add input{flex:1;border:1px solid var(--line-strong);background:var(--bg);color:var(--ink);padding:10px 12px;border-radius:5px;font-family:inherit;font-size:13px}
+  .add button{border:1px solid var(--ink);background:var(--ink);color:var(--bg);padding:0 18px;border-radius:5px;font-family:inherit;font-weight:600;font-size:13px;cursor:pointer}
+  .footnote{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-align:center;padding:30px 0 56px;letter-spacing:.1em}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <div class="mark">MOMENTUM<b>.</b></div>
+    <nav>
+      <button class="tab" aria-selected="true">Overview</button>
+      <button class="tab" aria-selected="false">Finance</button>
+      <button class="tab" aria-selected="false">Habits</button>
+    </nav>
+    <button class="toggle" onclick="document.documentElement.dataset.theme = document.documentElement.dataset.theme==='dark'?'light':'dark'">theme</button>
+  </div>
+</header>
+
+<div class="wrap">
+  <section class="mast">
+    <div class="gauge">
+      <svg viewBox="0 0 320 200">
+        <path d="M20 180 A140 140 0 0 1 300 180" fill="none" stroke="var(--line)" stroke-width="11" stroke-linecap="round"/>
+        <path id="fill2" d="M20 180 A140 140 0 0 1 300 180" fill="none" stroke="var(--accent)" stroke-width="11"
+          stroke-linecap="round" stroke-dasharray="0 440"/>
+      </svg>
+      <div class="gtxt">
+        <div class="gnum">73</div>
+        <div class="glabel">momentum</div>
+        <div class="gof">+4 this month</div>
+      </div>
+    </div>
+    <div>
+      <h1>One number for your money and your habits.</h1>
+      <p class="lead">Savings trend and streak consistency, combined into a single read. The rest of the page stays quiet on purpose.</p>
+      <div class="split">
+        <div class="stat"><span class="k">Financial health</span><span class="v pos">71</span></div>
+        <div class="stat"><span class="k">Habit consistency</span><span class="v">75</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="grid2">
+    <div class="panel">
+      <div class="phead"><h2>Finance</h2><span class="tag">6 months</span></div>
+      <div class="balance"><span class="b">$14,820</span><span class="rate">+18% saved</span></div>
+      <div class="sub">Running balance &middot; savings rate 24% this month</div>
+      <div class="chart">
+        <svg viewBox="0 0 320 130" preserveAspectRatio="none">
+          <polyline points="0,110 64,98 128,104 192,72 256,58 320,34" fill="none" stroke="var(--accent)" stroke-width="2.5"/>
+          <polygon points="0,130 0,110 64,98 128,104 192,72 256,58 320,34 320,130" fill="var(--accent)" opacity="0.08"/>
+        </svg>
+      </div>
+      <div class="cat">
+        <div class="crow"><span>Rent</span><span class="cbar"><i style="width:62%"></i></span><span class="cval">$1.9k</span></div>
+        <div class="crow"><span>Food</span><span class="cbar"><i style="width:34%"></i></span><span class="cval">$1.0k</span></div>
+        <div class="crow"><span>Transit</span><span class="cbar"><i style="width:18%"></i></span><span class="cval">$540</span></div>
+        <div class="crow"><span>Other</span><span class="cbar"><i style="width:12%"></i></span><span class="cval">$360</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="phead"><h2>Habits</h2><span class="tag">126 days</span></div>
+      <div class="heat" id="heat2"></div>
+      <div class="hlist" id="hlist2"></div>
+      <div class="add">
+        <input placeholder="New habit" aria-label="New habit name">
+        <button>Add</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="footnote">MOMENTUM DASHBOARD &middot; SKETCH 002 &middot; HIGH-CONTRAST SANS</div>
+</div>
+
+<script>
+  const heat=document.getElementById('heat2');
+  for(let i=0;i<18*7;i++){const c=document.createElement('div');c.className='cell';
+    const r=Math.random();if(r>.78)c.classList.add('l4');else if(r>.6)c.classList.add('l3');
+    else if(r>.4)c.classList.add('l2');else if(r>.22)c.classList.add('l1');heat.appendChild(c);}
+  const habits=[['Read 20 minutes',12,31],['Exercise',6,28],['No phone before bed',9,19]];
+  const hl=document.getElementById('hlist2');
+  habits.forEach(([n,cur,lon])=>{
+    const row=document.createElement('div');row.className='hrow';
+    row.innerHTML=`<span class="name">${n}</span><span class="meta">cur ${cur} &middot; best ${lon}</span>`;
+    const b=document.createElement('button');b.className='chk';b.onclick=()=>b.classList.toggle('on');
+    row.appendChild(b);hl.appendChild(row);
+  });
+  const arc=document.getElementById('fill2');
+  setTimeout(()=>{arc.style.transition='stroke-dasharray 1.1s cubic-bezier(.16,1,.3,1)';
+    const len=440; arc.setAttribute('stroke-dasharray',(73/100*len)+' '+len);},120);
+</script>
+</body>
+</html>
