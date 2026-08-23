@@ -70,6 +70,16 @@ const phonePattern = (i) => {
   return true;
 };
 
+// "JIT Rockwell": PLC/Studio 5000 practice streak. Started ~13 weeks in,
+// near-daily since with a couple of short gaps — mirrors a just-in-time
+// upskilling cadence without looking artificially perfect.
+const jitRockwellPattern = (i) => {
+  if (i < 90) return false;                  // began at week ~13
+  if (i >= 100 && i < 103) return false;     // 3-day gap
+  if (i >= 112 && i < 114) return false;     // 2-day gap
+  return true;
+};
+
 export function buildSeed() {
   return {
     transactions: buildFinance(),
@@ -77,6 +87,7 @@ export function buildSeed() {
       buildHabit('Read 20 minutes', readPattern),
       buildHabit('Exercise', exercisePattern),
       buildHabit('No phone before bed', phonePattern),
+      buildHabit('JIT Rockwell', jitRockwellPattern),
     ],
     theme: 'light',
   };
