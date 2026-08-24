@@ -1,0 +1,70 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .w3c5a67a8b { fill: #FCFCFB; }
+    .5b6c7d8e9f { fill: #15171A; }
+    .c0d1e2f3g4h { fill: #6B7075; }
+    .i5j6k7l8m9n { fill: #E6E7E9; }
+    .o9p0q1r2s3t { fill: #1F6F5C; }
+    .u4v5w6x7y8z { fill: #E4F0EC; }
+    .a1b2c3d4e5 { font-family: 'Space Grotesk', system-ui, sans-serif; }
+    .f6g7h8i9j0 { font-family: 'JetBrains Mono', monospace; }
+  </style>
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#FCFCFB"/>
+  
+  <!-- Gauge arc background -->
+  <path class="i5j6k7l8e9f"
+    d="M-180 0 A180 180 0 0 1 180 0"
+    fill="none" stroke="#E6E7E9" stroke-width="24" stroke-linecap="round"/>
+  
+  <!-- Accent arc at ~72% (100px / radius 180 => offset 100px from arc length 565) -->
+  <path class="o9p0q1r2s3t"
+    d="M-180 0 A180 180 0 0 1 180 0"
+    fill="none" stroke="#1F6F5C" stroke-width="24" stroke-linecap="round"
+    stroke-dasharray="565.5" stroke-dashoffset="158" transform="rotate(-90)"/>
+  
+  <!-- Momentum score number -->
+  <text x="0" y="10" text-anchor="middle" class="a1b2c3d4e5"
+    font-weight="700" font-size="96" font-family="Space Grotesk, system-ui, sans-serif" fill="#15171A">72</text>
+  
+  <!-- Center left label -->
+  <text x="0" y="52" text-anchor="middle" class="f6g7h8i9j0"
+    font-family="JetBrains Mono, monospace" font-size="16" 
+    letter-spacing="0.24em" text-transform="uppercase" fill="#6B7075">momentum</text>
+  
+  <!-- Finance / Habits split -->
+  <g transform="translate(0, 110)">
+    <text x="-200" y="0" class="f6g7h8i9j0"
+      font-family="JetBrains Mono, monospace" font-size="14" 
+      letter-spacing="0.16em" text-transform="uppercase" fill="#6B7075">finance</text>
+    <text x="-200" y="28" class="a1b2c3d4e5"
+      font-family="Space Grotesk, system-ui, sans-serif" font-weight="600"
+      font-size="32" fill="#15171A">68</text>
+    
+    <text x="200" y="0" class="f6g7h8i9j0"
+      font-family="JetBrains Mono, monospace" font-size="14" 
+      letter-spacing="0.16em" text-transform="uppercase" fill="#6B7075">habits</text>
+    <text x="200" y="28" class="a1b2c3d4e5"
+      font-family="Space Grotesk, system-ui, sans-serif" font-weight="600"
+      font-size="32" fill="#15171A">76</text>
+  </g>
+  
+  <!-- Headline -->
+  <text x="0" y="220" text-anchor="middle" class="a1b2c3d4e5"
+    font-family="Space Grotesk, system-ui, sans-serif" font-weight="700" font-size="48" fill="#15171A" max-width="1000">
+    Finance and habits, one number
+  </text>
+  
+  <!-- Subheadline -->
+  <text x="0" y="284" text-anchor="middle" class="f6g7h8i9j0"
+    font-family="Space Grotesk, system-ui, sans-serif" font-size="22" fill="#6B7075" max-width="800">
+    Savings trend + habit consistency → single momentum score
+  </text>
+  
+  <!-- Badge -->
+  <rect x="-120" y="350" width="240" height="44" rx="22" fill="#E4F0EC"/>
+  <text x="0" y="378" text-anchor="middle" class="a1b2c3d4e5"
+    font-family="Space Grotesk, system-ui, sans-serif" font-weight="500" font-size="15" fill="#1F6F5C">
+    Built with React + Vite + Chart.js
+  </text>
+</svg>

@@ -1,0 +1,16 @@
+{
+  "headers": [
+    {
+      "source": "/og-image.svg",
+      "headers": [
+        { "key": "Content-Type", "value": "image/svg+xml" }
+      ]
+    },
+    {
+      "source": "/favicon.svg",
+      "headers": [
+        { "key": "Content-Type", "value": "image/svg+xml" }
+      ]
+    }
+  ]
+}
